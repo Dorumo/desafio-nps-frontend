@@ -1,4 +1,4 @@
-import * as Dialog from '@radix-ui/react-dialog'
+import * as Dialog from '@radix-ui/react-dialog';
 import { Modal } from './components/Modal';
 
 import "./styles/main.css";

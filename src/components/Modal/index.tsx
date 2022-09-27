@@ -1,4 +1,5 @@
 import * as Dialog from "@radix-ui/react-dialog";
+import { ChangeEvent, FormEvent, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { Grades } from "../Grades";
 import { ModalHeader } from "../ModalHeader";
@@ -6,6 +7,8 @@ import { Textarea } from "../Textarea";
 
 export function Modal() {
   const navigate = useNavigate()
+
+  const [ message, setMessage] = useState('')
 
   function handleNext() {
     return navigate('/sent')
@@ -20,15 +23,17 @@ export function Modal() {
           Avaliação de satisfação
         </Dialog.Title>
         <Dialog.Description className="text-center justify-center text-2xl font-light text-lightGray flex flex-col items-center">
+          <form onSubmit={handleNext}>
           <span className="mb-10">
             Em uma escala de 0 a 10, quanto você recomendaria a FireDev para um
             amigo ou familiar?
           </span>
           <Grades />
-          <Textarea placeholder="Deixe sua opinião e melhorias (opcional)" />
-          <button onClick={handleNext} disabled={false} className='max-w-min my-10 enabled:bg-firedev-linear rounded-lg py-3 px-10 font-semibold text-white disabled:bg-[#c4c4c4]'>
+          <Textarea onChange={(event) => setMessage(event.target.value)} value={message} placeholder="Deixe sua opinião e melhorias (opcional)" />
+          <button disabled={message.length > 10 ? false : true} className='max-w-min my-10 enabled:bg-firedev-linear rounded-lg py-3 px-10 font-semibold text-white disabled:bg-[#c4c4c4]'>
             Próximo
           </button>
+          </form>
         </Dialog.Description>
       </Dialog.Content>
     </Dialog.Portal>

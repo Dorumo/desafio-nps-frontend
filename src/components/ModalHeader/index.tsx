@@ -3,7 +3,7 @@ import { CloseBtn } from "./CloseBtn";
 
 export function ModalHeader() {
   return (
-    <section className='flex justify-between mb-16'>
+    <section className='flex justify-between mb-16 focus:outline-none'>
       <BackBtn />
       <CloseBtn />
     </section>

@@ -1,7 +1,7 @@
 import * as Dialog from "@radix-ui/react-dialog";
 import { useState } from "react";
-import { Grades } from "./assets/Grades";
-import { Textarea } from "./assets/Textarea";
+import { Grades } from "./Grades";
+import { Textarea } from "./Textarea";
 interface ModalStepProps {
   onNextStep: () => void;
 }

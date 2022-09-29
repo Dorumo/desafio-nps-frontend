@@ -1,7 +1,7 @@
 import * as Dialog from "@radix-ui/react-dialog";
 import { useState } from "react";
-import { Grades } from "./assets/Grades";
-import { Textarea } from "./assets/Textarea";
+import { Grades } from "./Grades";
+import { Textarea } from "./Textarea";
 
 interface ModalStepProps {
   onNextStep: () => void;
@@ -21,7 +21,7 @@ export function FireDevForm({ onNextStep }: ModalStepProps) {
         <Textarea
           onChange={(event) => setMessage(event.target.value)}
           value={message}
-          placeholder="Deixe sua opinião e melhorias (opcional)"
+          placeholder="Deixe sua opinião e melhorias"
         />
         <button
           disabled={message.length > 10 ? false : true}

@@ -1,5 +1,5 @@
 import * as Dialog from "@radix-ui/react-dialog";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { Grades } from "./Grades";
 import { Textarea } from "./Textarea";
 
@@ -8,7 +8,25 @@ interface ModalStepProps {
 }
 
 export function FireDevForm({ onNextStep }: ModalStepProps) {
-  const [message, setMessage] = useState("");
+  const [fireDevFormMsg, setFireDevFormMsg] = useState(() => {
+    try {
+      return String(JSON.parse(localStorage.getItem("FireDevFormMsg") || ""));
+    } catch (error) {
+      return "";
+    }
+  });
+
+  const [fireDevFormGrade, setFireDevFormGrade] = useState(
+    Number(JSON.parse(localStorage.getItem("FireDevFormGrade") || "0"))
+  );
+
+  useEffect(() => {
+    localStorage.setItem("FireDevFormMsg", JSON.stringify(fireDevFormMsg));
+  }, [fireDevFormMsg]);
+
+  useEffect(() => {
+    localStorage.setItem("FireDevFormGrade", JSON.stringify(fireDevFormGrade));
+  }, [fireDevFormGrade]);
 
   return (
     <Dialog.Description className="text-center justify-center text-2xl font-light text-lightGray flex flex-col items-center">
@@ -17,14 +35,17 @@ export function FireDevForm({ onNextStep }: ModalStepProps) {
           Em uma escala de 0 a 10, quanto você recomendaria a FireDev para um
           amigo ou familiar?
         </span>
-        <Grades />
+        <Grades
+          value={[fireDevFormGrade]}
+          onValueChanged={(value) => setFireDevFormGrade(Number(value))}
+        />
         <Textarea
-          onChange={(event) => setMessage(event.target.value)}
-          value={message}
+          onChange={(event) => setFireDevFormMsg(event.target.value)}
+          value={fireDevFormMsg}
           placeholder="Deixe sua opinião e melhorias"
         />
         <button
-          disabled={message.length > 10 ? false : true}
+          disabled={fireDevFormMsg.length > 10 ? false : true}
           className="max-w-min my-10 enabled:bg-firedev-linear rounded-lg py-3 px-10 font-semibold text-white disabled:bg-[#c4c4c4]"
         >
           Próximo

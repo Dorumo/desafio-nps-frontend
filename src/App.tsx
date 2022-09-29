@@ -1,22 +1,13 @@
-import { createBrowserRouter, RouterProvider, Route } from "react-router-dom";
-import { Home } from "./routes/Home";
-import { Sent } from "./routes/Sent";
-import "./styles/main.css";
+import * as Dialog from "@radix-ui/react-dialog";
 
-const router = createBrowserRouter([
-  {
-    path: "/",
-    element: <Home />,
-  },
-  {
-    path: '/sent',
-    element: <Sent />
-  }
-]);
+import { Modal } from "./components/Modal";
+import "./styles/main.css";
 
 function App() {
   return (
-    <RouterProvider router={router} />
+    <Dialog.Root defaultOpen>
+      <Modal />
+    </Dialog.Root>
   );
 }
 

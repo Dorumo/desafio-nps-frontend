@@ -67,7 +67,7 @@ export function Modal() {
   return (
     <Dialog.Portal>
       <Dialog.Overlay className="bg-black/60 inset-0 fixed" />
-      <Dialog.Content className="fixed w-7/12 justify-center bg-white py-12 px-16 text-black top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 rounded-lg shadow-lg shadow-black/25">
+      <Dialog.Content className="fixed max-w-[680px] justify-center bg-white py-12 px-16 text-black top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 rounded-lg shadow-lg shadow-black/25">
         <header className="flex justify-between">
           {step > 0 && !isSent ? (
             <BackBtn onBackStep={handleBackStep} />

@@ -39,11 +39,14 @@ export function FireDevForm({ onNextStep }: ModalStepProps) {
           value={[fireDevFormGrade]}
           onValueChanged={(value) => setFireDevFormGrade(Number(value))}
         />
-        <Textarea
-          onChange={(event) => setFireDevFormMsg(event.target.value)}
-          value={fireDevFormMsg}
-          placeholder="Deixe sua opinião e melhorias"
-        />
+        <div className="items-start flex flex-col">
+          <Textarea
+            onChange={(event) => setFireDevFormMsg(event.target.value)}
+            value={fireDevFormMsg}
+            placeholder="Deixe sua opinião e melhorias"
+          />
+          <p className="text-[#FF046D] text-xl">*Obrigatório</p>
+        </div>
         <button
           disabled={fireDevFormMsg.length > 10 ? false : true}
           className="max-w-min my-10 enabled:bg-firedev-linear rounded-lg py-3 px-10 font-semibold text-white disabled:bg-[#c4c4c4]"

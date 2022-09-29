@@ -24,6 +24,16 @@ export function Modal() {
     localStorage.setItem("step", JSON.stringify(step));
   }, [step]);
 
+  const [isMobile, setMobile] = useState(window.innerWidth < 640);
+
+  const updateMedia = () => {
+    setMobile(window.innerWidth < 640);
+  };
+
+  useEffect(() => {
+    window.addEventListener("resize", updateMedia);
+  });
+
   function handleNextStep() {
     const nextStep = step + 1;
     setStep(nextStep);
@@ -36,29 +46,29 @@ export function Modal() {
 
   function handleSent() {
     console.log(
-      "FireDevFormGrade: ",
+      "Nota para a FireDev: ",
       String(JSON.parse(localStorage.getItem("FireDevFormGrade") || ""))
     );
     console.log(
-      "FireDevFormMsg: ",
+      "Comentário sobre a FireDev: ",
       String(JSON.parse(localStorage.getItem("FireDevFormMsg") || ""))
     );
     console.log(
-      "DevPortalFormGrade: ",
+      "Nota para o Portal do Desenvolvedor: ",
       String(JSON.parse(localStorage.getItem("DevPortalFormGrade") || ""))
     );
     console.log(
-      "DevPortalFormMsg: ",
+      "Comentário sobre o Portal do Desenvolvedor: ",
       String(JSON.parse(localStorage.getItem("DevPortalFormMsg") || ""))
     );
     console.log(
-      "FireDevConsultingFormGrade: ",
+      "Nota para a consultoria da FireDev: ",
       String(
         JSON.parse(localStorage.getItem("FireDevConsultingFormGrade") || "")
       )
     );
     console.log(
-      "FireDevConsultingFormMsg: ",
+      "Comentário sobre a consultoria da FireDev: ",
       String(JSON.parse(localStorage.getItem("FireDevConsultingFormMsg") || ""))
     );
     setIsSent(true);
@@ -67,9 +77,9 @@ export function Modal() {
   return (
     <Dialog.Portal>
       <Dialog.Overlay className="bg-black/60 inset-0 fixed" />
-      <Dialog.Content className="fixed max-w-[680px] justify-center bg-white py-12 px-16 text-black top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 rounded-lg shadow-lg shadow-black/25">
+      <Dialog.Content className="fixed max-w-[680px] justify-center bg-white py-12 px-16 text-black top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 rounded-lg shadow-lg shadow-black/25 mobile:p-5 mobile:w-9/12">
         <header className="flex justify-between">
-          {step > 0 && !isSent ? (
+          {step > 0 && !isSent && !isMobile ? (
             <BackBtn onBackStep={handleBackStep} />
           ) : (
             <div></div>
@@ -78,15 +88,15 @@ export function Modal() {
         </header>
         {!isSent ? (
           <>
-            <Dialog.Title className=" my-6 text-center justify-center text-4xl font-semibold text-lightGray">
+            <Dialog.Title className="my-6 text-center justify-center text-4xl font-semibold text-lightGray mobile:text-2xl">
               Avaliação de satisfação
             </Dialog.Title>
             {step === 0 ? (
               <FireDevForm onNextStep={handleNextStep} />
             ) : step === 1 ? (
-              <DevPortalForm onNextStep={handleNextStep} />
+              <DevPortalForm onNextStep={handleNextStep} onBackStep={handleBackStep} />
             ) : (
-              <FireDevConsultingForm onNextStep={handleSent} />
+              <FireDevConsultingForm onNextStep={handleSent} onBackStep={handleBackStep} />
             )}
           </>
         ) : (

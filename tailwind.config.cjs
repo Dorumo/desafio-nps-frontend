@@ -14,6 +14,9 @@ module.exports = {
         'mandatory': '#FF046D'
       }
     },
+    screens: {
+      'mobile': {'max': '639px'}
+    }
   },
   plugins: [],
 }

@@ -29,7 +29,7 @@ export function FireDevForm({ onNextStep }: ModalStepProps) {
   }, [fireDevFormGrade]);
 
   return (
-    <Dialog.Description className="text-center justify-center text-2xl font-light text-lightGray flex flex-col items-center">
+    <Dialog.Description className="text-center justify-center text-2xl font-light text-lightGray flex flex-col items-center mobile:text-xl">
       <form onSubmit={onNextStep}>
         <span className="mb-10">
           Em uma escala de 0 a 10, quanto você recomendaria a FireDev para um
@@ -45,7 +45,7 @@ export function FireDevForm({ onNextStep }: ModalStepProps) {
             value={fireDevFormMsg}
             placeholder="Deixe sua opinião e melhorias"
           />
-          <p className="text-[#FF046D] text-xl">*Obrigatório</p>
+          <p className="text-[#FF046D] text-xl mobile:text-base">*Obrigatório</p>
         </div>
         <button
           disabled={fireDevFormMsg.length > 10 ? false : true}

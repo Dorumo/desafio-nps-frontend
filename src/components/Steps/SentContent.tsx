@@ -7,10 +7,10 @@ export function SentContent() {
       <div className="flex justify-center">
         <CheckCircle size={100} color="#3bb46b" weight="fill" />
       </div>
-      <Dialog.Title className="my-6 text-center text-4xl font-semibold text-lightGray">
+      <Dialog.Title className="my-6 text-center text-4xl font-semibold text-lightGray mobile:text-2xl">
         Sua avaliação foi enviada com sucesso!
       </Dialog.Title>
-      <Dialog.Description className="text-center justify-center text-2xl font-light text-lightGray flex flex-col items-center">
+      <Dialog.Description className="text-center justify-center text-2xl font-light text-lightGray flex flex-col items-center mobile:text-xl">
         <span className="mb-10">
           <p>Esta avaliação ajuda a melhorarmos a sua experiência.</p>
           Muito obrigado pela sua participação.
